@@ -11,6 +11,7 @@ public class RadioTest {
     // Изменение радиостанции вручную
     @ParameterizedTest
     @CsvSource({
+            "-1, 0",
             "0, 0",
             "1, 1",
             "10, 0"
@@ -67,6 +68,7 @@ public class RadioTest {
     // Присвоение громкости
     @ParameterizedTest
     @CsvSource({
+            "-1, 0",
             "0, 0",
             "10, 10",
             "11, 0"
