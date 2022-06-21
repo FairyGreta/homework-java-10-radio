@@ -12,10 +12,10 @@ public class Radio {
 
     // Блок 1. Переключение радиостаций. Сеттер
     public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation <= 0) {
+        if (newCurrentRadioStation < 0) {
             return;
         }
-        if (newCurrentRadioStation >= 9) {
+        if (newCurrentRadioStation > 9) {
             return;
         }
 
