@@ -12,8 +12,10 @@ public class RadioTest {
     @ParameterizedTest
     @CsvSource({
             "-1, 0",
+            "-9, 0",
             "0, 0",
             "1, 1",
+            "9, 9",
             "10, 0"
     })
     public void shouldSetRadioStation(int currentRadioStation, int expected) {
