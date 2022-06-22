@@ -1,8 +1,6 @@
 package ru.netology.homework;
 
 public class Radio {
-
-    // Поля
     public int currentRadioStation;
     public int currentVolume;
 
@@ -26,28 +24,25 @@ public class Radio {
     public void nextRadioStation() {
         if (currentRadioStation < 9) {
             currentRadioStation = currentRadioStation + 1;
-        } else if (currentRadioStation == 9) {
+        } else
             currentRadioStation = 0;
-        }
-
     }
 
     // метод prev
     public void prevRadioStation() {
         if (currentRadioStation > 0) {
             currentRadioStation = currentRadioStation - 1;
-        } else if (currentRadioStation == 0) {
+        } else
             currentRadioStation = 9;
-        }
     }
 
     // Блок 2. Громкость
-    public int getCurrentVolume () {
+    public int getCurrentVolume() {
         return currentVolume;
     }
 
     // Сеттер
-    public void setCurrentVolume (int newCurrentVolume) {
+    public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume < 0) {
             return;
         }
@@ -59,20 +54,18 @@ public class Radio {
     }
 
     //Увеличение громкости
-    public void upCurrentVolume () {
-        if (currentVolume >= 0 && currentVolume < 10) {
+    public void upCurrentVolume() {
+        if (currentVolume < 10) {
             currentVolume = currentVolume + 1;
-        } else if (currentVolume == 10) {
+        } else
             currentVolume = 10;
-        }
     }
 
     //Уменьшение громкости
-    public  void downCurrentVolume () {
-        if (currentVolume > 0 && currentVolume <= 10) {
+    public void downCurrentVolume() {
+        if (currentVolume > 0) {
             currentVolume = currentVolume - 1;
-        } else if (currentVolume == 0) {
+        } else
             currentVolume = 0;
-        }
     }
 }
