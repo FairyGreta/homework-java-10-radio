@@ -8,6 +8,19 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class RadioTest {
     Radio radio = new Radio();
 
+    @Test
+    public void shouldSetRadio () {
+        radio.setQuantityRadioStation(20);
+        radio.setCurrentRadioStation(15);
+
+        int expected = 15;
+        int actual = radio.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+
+
     @ParameterizedTest
     @CsvSource({
             "0, 0",
