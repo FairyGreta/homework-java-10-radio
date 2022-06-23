@@ -6,24 +6,23 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class RadioTest {
+    Radio radioman = new Radio(10);
+    Radio radio = new Radio();
 
     //Тесты Блока 1. Радиостанции
     // Изменение радиостанции вручную
     @ParameterizedTest
     @CsvSource({
             "-1, 0",
-            "-9, 0",
             "0, 0",
             "1, 1",
             "9, 9",
             "10, 0"
     })
     public void shouldSetRadioStation(int currentRadioStation, int expected) {
-        Radio radioStation = new Radio();
+        radio.setCurrentRadioStation(currentRadioStation);
 
-        radioStation.setCurrentRadioStation(currentRadioStation);
-
-        int actual = radioStation.currentRadioStation;
+        int actual = radio.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -36,13 +35,11 @@ public class RadioTest {
             "0, 1",
             "1, 2"
     })
-    public void shouldSetNextRadioStationAll(int currentRadioStation, int expected) {
-        Radio radioStation = new Radio();
+    public void shouldSetNextRadioStation(int currentRadioStation, int expected) {
+        radio.setCurrentRadioStation(currentRadioStation);
+        radio.nextRadioStation();
 
-        radioStation.setCurrentRadioStation(currentRadioStation);
-        radioStation.nextRadioStation();
-
-        int actual = radioStation.getCurrentRadioStation();
+        int actual = radio.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -56,12 +53,10 @@ public class RadioTest {
             "1, 0"
     })
     public void shouldSetPrevRadioStation(int currentRadioStation, int expected) {
-        Radio radioStation = new Radio();
+        radio.setCurrentRadioStation(currentRadioStation);
+        radio.prevRadioStation();
 
-        radioStation.setCurrentRadioStation(currentRadioStation);
-        radioStation.prevRadioStation();
-
-        int actual = radioStation.getCurrentRadioStation();
+        int actual = radio.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -72,15 +67,14 @@ public class RadioTest {
     @CsvSource({
             "-1, 0",
             "0, 0",
-            "10, 10",
-            "11, 0"
+            "1, 1",
+            "100, 100",
+            "111, 0"
     })
-    public void shouldSetVolume(int currentVolume, int expected) {
-        Radio volume = new Radio();
+    public void shouldSetCurrentVolume(int currentVolume, int expected) {
+        radio.setCurrentVolume(currentVolume);
 
-        volume.setCurrentVolume(currentVolume);
-
-        int actual = volume.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -90,16 +84,14 @@ public class RadioTest {
     @CsvSource({
             "0, 1",
             "1, 2",
-            "9, 10",
-            "10, 10"
+            "99, 100",
+            "100, 100"
     })
     public void shouldUpCurrentVolume(int currentVolume, int expected) {
-        Radio volume = new Radio();
+        radio.setCurrentVolume(currentVolume);
+        radio.upCurrentVolume();
 
-        volume.setCurrentVolume(currentVolume);
-        volume.upCurrentVolume();
-
-        int actual = volume.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -113,12 +105,10 @@ public class RadioTest {
             "0, 0"
     })
     public void shouldDownCurrentVolume(int currentVolume, int expected) {
-        Radio volume = new Radio();
+        radio.setCurrentVolume(currentVolume);
+        radio.downCurrentVolume();
 
-        volume.setCurrentVolume(currentVolume);
-        volume.downCurrentVolume();
-
-        int actual = volume.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
