@@ -1,6 +1,7 @@
 package ru.netology.homework;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -57,12 +58,18 @@ public class RadioTest {
     }
 
     //Установить радиостанций 20 и вызвать текущей 15
-    @Test
-    public void shouldSetRadioStation20() {
-        Radio radio = new Radio(20);
-        radio.setCurrentRadioStation(15);
+    @ParameterizedTest
+    @CsvSource({
+            "20, 15, 15",
+            "30, 10, 10",
+            "40, 5, 5",
+            "50, 28, 28"
+    })
+    public void shouldSetRadioStation20(int quantityRadioStation, int currentRadioStation, int expected) {
+        Radio radio = new Radio(quantityRadioStation);
+        radio.setCurrentRadioStation(currentRadioStation);
 
-        assertEquals(15, radio.getCurrentRadioStation());
+        assertEquals(expected, radio.getCurrentRadioStation());
 
     }
 
