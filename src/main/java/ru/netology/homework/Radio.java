@@ -1,71 +1,83 @@
 package ru.netology.homework;
 
 public class Radio {
-    public int currentRadioStation;
-    public int currentVolume;
+    protected int quantityRadioStation = 10;
+    protected int maxCurrentRadioStation = 9;
+    protected int minCurrentRadioStation = 0;
+    protected int currentRadioStation = minCurrentRadioStation;
+    protected int minVolume = 0;
+    protected int maxVolume = 100;
+    protected int currentVolume = minVolume;
 
+    //Радиостанции
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
-    // Блок 1. Переключение радиостаций. Сеттер
     public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 0) {
+        if (newCurrentRadioStation < minCurrentRadioStation) {
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (newCurrentRadioStation > maxCurrentRadioStation) {
             return;
         }
-
         currentRadioStation = newCurrentRadioStation;
     }
 
-    //метод next
-    public void nextRadioStation() {
-        if (currentRadioStation < 9) {
+    public Radio(int quantityRadioStation) {
+        this.quantityRadioStation = quantityRadioStation;
+        maxCurrentRadioStation = quantityRadioStation - 1;
+    }
+
+    public Radio() {
+
+    }
+
+    public void next() {
+        if (currentRadioStation < maxCurrentRadioStation) {
             currentRadioStation = currentRadioStation + 1;
-        } else
+        } else {
             currentRadioStation = 0;
+        }
     }
 
-    // метод prev
-    public void prevRadioStation() {
-        if (currentRadioStation > 0) {
+    public void prev() {
+        if (currentRadioStation > minCurrentRadioStation) {
             currentRadioStation = currentRadioStation - 1;
-        } else
-            currentRadioStation = 9;
+        } else {
+            currentRadioStation = maxCurrentRadioStation;
+        }
     }
 
-    // Блок 2. Громкость
+    // Громкость
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    // Сеттер
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (newCurrentVolume > 10) {
+        if (newCurrentVolume > maxVolume) {
             return;
         }
-
         currentVolume = newCurrentVolume;
     }
 
-    //Увеличение громкости
-    public void upCurrentVolume() {
-        if (currentVolume < 10) {
+    public void increaseVolume() {
+        if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
-        } else
-            currentVolume = 10;
+        } else {
+            currentVolume = maxVolume;
+        }
     }
 
     //Уменьшение громкости
-    public void downCurrentVolume() {
-        if (currentVolume > 0) {
+    public void decreaseVolume() {
+        if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
-        } else
-            currentVolume = 0;
+        } else {
+            currentVolume = minVolume;
+        }
     }
 }
