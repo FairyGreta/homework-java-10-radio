@@ -19,8 +19,6 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-
-
     @ParameterizedTest
     @CsvSource({
             "0, 0",
@@ -44,13 +42,25 @@ public class RadioTest {
             "0, 1",
             "1, 2"
     })
-    public void shouldSetNextRadioStation(int currentRadioStation, int expected) {
+    public void shouldSetNext(int currentRadioStation, int expected) {
         radio.setCurrentRadioStation(currentRadioStation);
-        radio.nextRadioStation();
+        radio.next();
 
-        int actual = radio.getCurrentRadioStation();
+        Assertions.assertEquals(expected, radio.getCurrentRadioStation());
+    }
 
-        Assertions.assertEquals(expected, actual);
+    @ParameterizedTest
+    @CsvSource({
+            "8, 7",
+            "9, 8",
+            "0, 9",
+            "1, 0"
+    })
+    public void shouldSetPrev(int currentRadioStation, int expected) {
+        radio.setCurrentRadioStation(currentRadioStation);
+        radio.prev();
+
+        Assertions.assertEquals(expected, radio.getCurrentRadioStation());
     }
 }
 

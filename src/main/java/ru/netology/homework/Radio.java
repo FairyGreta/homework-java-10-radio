@@ -28,11 +28,19 @@ public class Radio {
         currentRadioStation = newCurrentRadioStation;
     }
 
-    public void nextRadioStation() {
+    public void next() {
         if (currentRadioStation < maxCurrentRadioStation) {
             currentRadioStation = currentRadioStation + 1;
         } else {
             currentRadioStation = 0;
+        }
+    }
+
+    public void prev() {
+        if (currentRadioStation > minCurrentRadioStation) {
+            currentRadioStation = currentRadioStation - 1;
+        } else {
+            currentRadioStation = maxCurrentRadioStation;
         }
     }
 }
