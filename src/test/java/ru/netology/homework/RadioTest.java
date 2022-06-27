@@ -1,15 +1,13 @@
 package ru.netology.homework;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class RadioTest {
-    Radio radioman = new Radio(10);
-    Radio radio = new Radio();
 
-    //Тесты Блока 1. Радиостанции
+    //Радиостанции
     // Изменение радиостанции вручную
     @ParameterizedTest
     @CsvSource({
@@ -20,11 +18,10 @@ public class RadioTest {
             "10, 0"
     })
     public void shouldSetRadioStation(int currentRadioStation, int expected) {
+        Radio radio = new Radio();
         radio.setCurrentRadioStation(currentRadioStation);
 
-        int actual = radio.getCurrentRadioStation();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, radio.getCurrentRadioStation());
     }
 
     // Next. Граничные значения
@@ -36,12 +33,11 @@ public class RadioTest {
             "1, 2"
     })
     public void shouldSetNextRadioStation(int currentRadioStation, int expected) {
+        Radio radio = new Radio();
         radio.setCurrentRadioStation(currentRadioStation);
-        radio.nextRadioStation();
+        radio.next();
 
-        int actual = radio.getCurrentRadioStation();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, radio.getCurrentRadioStation());
     }
 
     //Prev. Граничные значения
@@ -53,12 +49,21 @@ public class RadioTest {
             "1, 0"
     })
     public void shouldSetPrevRadioStation(int currentRadioStation, int expected) {
+        Radio radio = new Radio();
         radio.setCurrentRadioStation(currentRadioStation);
-        radio.prevRadioStation();
+        radio.prev();
 
-        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, radio.getCurrentRadioStation());
+    }
 
-        Assertions.assertEquals(expected, actual);
+    //Установить радиостанций 20 и вызвать текущей 15
+    @Test
+    public void shouldSetRadioStation20() {
+        Radio radio = new Radio(20);
+        radio.setCurrentRadioStation(15);
+
+        assertEquals(15, radio.getCurrentRadioStation());
+
     }
 
     //Тесты блока 2. Громкость звука
@@ -72,11 +77,10 @@ public class RadioTest {
             "111, 0"
     })
     public void shouldSetCurrentVolume(int currentVolume, int expected) {
+        Radio radio = new Radio();
         radio.setCurrentVolume(currentVolume);
 
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, radio.getCurrentVolume());
     }
 
     // Увеличение громкости до предела 10
@@ -88,12 +92,11 @@ public class RadioTest {
             "100, 100"
     })
     public void shouldUpCurrentVolume(int currentVolume, int expected) {
+        Radio radio = new Radio();
         radio.setCurrentVolume(currentVolume);
-        radio.upCurrentVolume();
+        radio.increaseVolume();
 
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, radio.getCurrentVolume());
     }
 
     // Уменьшение громкости до предела 0
@@ -105,11 +108,10 @@ public class RadioTest {
             "0, 0"
     })
     public void shouldDownCurrentVolume(int currentVolume, int expected) {
+        Radio radio = new Radio();
         radio.setCurrentVolume(currentVolume);
-        radio.downCurrentVolume();
+        radio.decreaseVolume();
 
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, radio.getCurrentVolume());
     }
 }

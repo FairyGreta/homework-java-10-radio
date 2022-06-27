@@ -1,29 +1,19 @@
 package ru.netology.homework;
 
 public class Radio {
-    private int quantityRadioStation = 10;
-    private int maxCurrentRadioStation = 9;
-    private int minCurrentRadioStation = 0;
-    private int currentRadioStation = minCurrentRadioStation;
-    private int minVolume = 0;
-    private int maxVolume = 100;
-    private int currentVolume = minVolume;
+    protected int quantityRadioStation = 10;
+    protected int maxCurrentRadioStation = 9;
+    protected int minCurrentRadioStation = 0;
+    protected int currentRadioStation = minCurrentRadioStation;
+    protected int minVolume = 0;
+    protected int maxVolume = 100;
+    protected int currentVolume = minVolume;
 
-
-    //геттеры
+    //Радиостанции
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
-    public Radio(int quantityRadioStation) {
-        this.quantityRadioStation = quantityRadioStation;
-    }
-
-    public Radio() {
-
-    }
-
-    // Блок 1. Переключение радиостаций. Сеттер
     public void setCurrentRadioStation(int newCurrentRadioStation) {
         if (newCurrentRadioStation < minCurrentRadioStation) {
             return;
@@ -31,12 +21,19 @@ public class Radio {
         if (newCurrentRadioStation > maxCurrentRadioStation) {
             return;
         }
-
         currentRadioStation = newCurrentRadioStation;
     }
 
-    //метод next
-    public void nextRadioStation() {
+    public Radio(int quantityRadioStation) {
+        this.quantityRadioStation = quantityRadioStation;
+        maxCurrentRadioStation = quantityRadioStation - 1;
+    }
+
+    public Radio() {
+
+    }
+
+    public void next() {
         if (currentRadioStation < maxCurrentRadioStation) {
             currentRadioStation = currentRadioStation + 1;
         } else {
@@ -44,8 +41,7 @@ public class Radio {
         }
     }
 
-    // метод prev
-    public void prevRadioStation() {
+    public void prev() {
         if (currentRadioStation > minCurrentRadioStation) {
             currentRadioStation = currentRadioStation - 1;
         } else {
@@ -53,12 +49,11 @@ public class Radio {
         }
     }
 
-    // Блок 2. Громкость
+    // Громкость
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    // Сеттер
     public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume < minVolume) {
             return;
@@ -66,12 +61,10 @@ public class Radio {
         if (newCurrentVolume > maxVolume) {
             return;
         }
-
         currentVolume = newCurrentVolume;
     }
 
-    //Увеличение громкости
-    public void upCurrentVolume() {
+    public void increaseVolume() {
         if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
         } else {
@@ -80,7 +73,7 @@ public class Radio {
     }
 
     //Уменьшение громкости
-    public void downCurrentVolume() {
+    public void decreaseVolume() {
         if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         } else {
